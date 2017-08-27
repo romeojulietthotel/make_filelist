@@ -24,12 +24,13 @@ if __name__ == '__main__':
     files = os.listdir()
     pools = cpu_count()
 
+    """ Test the commands as they will fail silently. """
     fileexts = {
                 'tar.gz':Template('gunzip -c ${filename} | tar tf -'),
                 'tar.xz':Template('xz -d -T0 -c ${filename} | tar tf -'),
                 'tar.bz2':Template('bunzip2 -c ${filename} | tar tf -'),
                 'tar':Template('tar tf ${filename}'),
-                'zip':Template('unzipp -l ${filename}')
+                'zip':Template('unzip -l ${filename}')
                }
 
     contents = list()
