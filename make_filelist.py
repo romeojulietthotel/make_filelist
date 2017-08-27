@@ -42,25 +42,26 @@ if __name__ == '__main__':
         if len(fileList) < 1:
             print("\n\nStart in a directory containing your tar files.\n\n")
             sys.exit(1)
-        
+
         pool = None
         pool = Pool(processes=pools)
         result = pool.map(unpakit, fileList)
-        
+
         # uncomment this to debug, comment pool above & below
         #for file in fileList:
         #   unpakit(file)
-        
+
         if result[0] is False:
             print("Problem encountered, check external commands")
         contents.append(result)
         # close the pool and wait for the work to finish 
         pool.close()
         pool.join()
-    
-    for entry in contents[0]:
-        for toc in entry[1:]:
-            lines=(toc.decode().split("\n"))[:-1]
-            for line in lines:
-                print("%s -> %s"%(entry[0],line))
+
+    for content in contents:
+        for entry in content:
+            for toc in entry[1:]:
+                lines=(toc.decode().split("\n"))[:-1]
+                for line in lines:
+                    print("%s -> %s"%(entry[0],line))
 
