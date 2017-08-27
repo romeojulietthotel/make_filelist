@@ -29,7 +29,7 @@ if __name__ == '__main__':
                 'tar.xz':Template('xz -d -T0 -c ${filename} | tar tf -'),
                 'tar.bz2':Template('bunzip2 -c ${filename} | tar tf -'),
                 'tar':Template('tar tf ${filename}'),
-                'zip':Template('unzip -l ${filename}')
+                'zip':Template('unzipp -l ${filename}')
                }
 
     contents = list()
